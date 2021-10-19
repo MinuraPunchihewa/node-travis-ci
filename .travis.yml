@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t minurapunchihewa/node-travis-ci .
   - docker images minurapunchihewa/node-travis-ci
+
+before_deploy:
+  - docker login -u minurapunchihewa -p Geronimo@1721
+
+deploy:
+  provider: script
+  script: docker push minurapunchihewa/node-travis-ci
+  on:
+    branch: master
